@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_picker/image_picker.dart';
@@ -230,7 +231,18 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              DropdownButtonFormField<PlantType>(
+              Container(
+                child: Image.asset(
+                  'assets/images/PDP-logo.png',
+                  height: 100,
+                ),
+              ),
+              const SizedBox(
+                height: 40,
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 10, right: 15),
+                child: DropdownButtonFormField<PlantType>(
                   hint: const Text('Select a plant type'),
                   value: _plantType,
                   items: PlantType.values
@@ -239,34 +251,38 @@ class _HomeState extends State<Home> {
                             child: Text(e.name),
                           ))
                       .toList(),
-                  onChanged: onPlantTypeChanged),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: devSize.height * .3,
-                // color: Colors.black12,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(
-                      color: Colors.grey.withOpacity(0.4),
-                    ),
-                    color: Colors.white),
-                child: Center(
-                  child: _image == null
-                      ? const Text('Please select an image')
-                      : Container(
-                          height: devSize.height * 0.29,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Image.file(
-                            _image!,
-                            height: devSize.height * .3,
-                            width: double.infinity,
-                            // fit: BoxFit.cover,
-                          ),
-                        ),
+                  onChanged: onPlantTypeChanged,
+                  borderRadius: BorderRadius.circular(12),
                 ),
+              ),
+              const SizedBox(
+                height: 30,
+              ),
+              Center(
+                child: _image == null
+                    ? Container(
+                        height: devSize.height * .27,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              color: Colors.grey.withOpacity(0.4),
+                            ),
+                            color: Colors.white),
+                        child: const Center(
+                          child: Text('Please select an image'),
+                        ),
+                      )
+                    : Container(
+                        height: devSize.height * 0.29,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Image.file(
+                          _image!,
+                          height: devSize.height * .3,
+                          width: double.infinity,
+                          // fit: BoxFit.cover,
+                        ),
+                      ),
               ),
               const SizedBox(
                 height: 20,
