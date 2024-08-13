@@ -78,25 +78,116 @@ class _HomeState extends State<Home> {
                   sigmaY: 10,
                 ),
                 child: AlertDialog(
-                  title: const Text('Results'),
+                  backgroundColor: Colors.grey[300],
+                  title: Center(child: const Text('Results')),
+                  // contentPadding: EdgeInsets.zero,
+                  // content: ConstrainedBox(
+                  //   constraints: BoxConstraints(
+                  //     maxHeight: 200,
+                  //   ),
+                  //   child: Stack(
+                  //     children: [
+                  //       Container(
+                  //         width: double.maxFinite,
+                  //         height: double.maxFinite,
+                  //         decoration: BoxDecoration(
+                  //           image: DecorationImage(
+                  //               image: AssetImage(
+                  //                   'assets/images/plantUnsplash2.jpg'),
+                  //               fit: BoxFit.cover),
+                  //           borderRadius: BorderRadius.circular(15),
+                  //         ),
+                  //         child: ClipRRect(
+                  //           borderRadius: BorderRadius.circular(15),
+                  //           child: BackdropFilter(
+                  //             filter: ImageFilter.blur(sigmaX: 3, sigmaY: 3),
+                  //             child: Container(
+                  //               color: Colors.blueGrey.withOpacity(0.1),
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //       Positioned(
+                  //         top: 50,
+                  //         left: 20,
+                  //         right: 20,
+                  //         child: Column(
+                  //           // mainAxisAlignment: MainAxisAlignment.center,
+                  //           children: [
+                  //             Text(
+                  //               'Results',
+                  //               style: TextStyle(
+                  //                 fontSize: 24,
+                  //                 color: Colors.grey[100],
+                  //                 fontWeight: FontWeight.bold,
+                  //               ),
+                  //             ),
+                  //             SizedBox(
+                  //               height: 10,
+                  //             ),
+                  //             RichText(
+                  //               text: TextSpan(
+                  //                   text: 'Label: ',
+                  //                   style: TextStyle(
+                  //                       color: Colors.grey[100],
+                  //                       fontSize: 16,
+                  //                       fontWeight: FontWeight.w600),
+                  //                   children: [
+                  //                     TextSpan(
+                  //                       text: res.className,
+                  //                       style: TextStyle(
+                  //                           color: Colors.grey[100],
+                  //                           fontSize: 18,
+                  //                           fontWeight: FontWeight.w700),
+                  //                     )
+                  //                   ]),
+                  //             ),
+                  //             SizedBox(
+                  //               height: 10,
+                  //             ),
+                  //             RichText(
+                  //               text: TextSpan(
+                  //                   text: 'Confidence: ',
+                  //                   style: TextStyle(
+                  //                       color: Colors.grey[100],
+                  //                       fontSize: 16,
+                  //                       fontWeight: FontWeight.w600),
+                  //                   children: [
+                  //                     TextSpan(
+                  //                         text: confidence,
+                  //                         style: const TextStyle(
+                  //                             color: Colors.white,
+                  //                             fontSize: 18,
+                  //                             fontWeight: FontWeight.w500))
+                  //                   ]),
+                  //             )
+                  //           ],
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                   content: Column(
                     mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       RichText(
                         text: TextSpan(
-                            text: 'Result: ',
+                            text: 'Label: ',
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w400),
                             children: [
                               TextSpan(
                                   text: res.className,
                                   style: const TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400))
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600))
                             ]),
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                       RichText(
                         text: TextSpan(
@@ -104,13 +195,13 @@ class _HomeState extends State<Home> {
                             style: const TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w400),
                             children: [
                               TextSpan(
                                   text: confidence,
                                   style: const TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400))
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600))
                             ]),
                       )
                     ],
@@ -274,14 +365,20 @@ class _HomeState extends State<Home> {
                       )
                     : Container(
                         height: devSize.height * 0.29,
+                        width: devSize.width / 1.6,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Image.file(
-                          _image!,
-                          height: devSize.height * .3,
-                          width: double.infinity,
-                          // fit: BoxFit.cover,
+                          borderRadius: BorderRadius.circular(20),
+                          image: DecorationImage(
+                            image: FileImage(_image!),
+                            fit: BoxFit.cover,
+                          ),
                         ),
+                        // child: Image.file(
+                        //   _image!,
+                        //   height: devSize.height * .3,
+                        //   width: double.infinity,
+                        //   // fit: BoxFit.cover,
+                        // ),
                       ),
               ),
               const SizedBox(
